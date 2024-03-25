@@ -3,6 +3,13 @@
     <style name="Base.Theme.WhatsappFirebase" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+       <!-- <item name="colorPrimaryVariant">@color/my_light_primary</item>
+        <item name="colorOnPrimaryPrimary">@color/my_light_primary</item>-->
+
+
+
+
     </style>
 
     <style name="Theme.WhatsappFirebase" parent="Base.Theme.WhatsappFirebase" />
