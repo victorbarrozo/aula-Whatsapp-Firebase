@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "345498834235",
+    "project_id": "aula-firebase-whatsapp",
+    "storage_bucket": "aula-firebase-whatsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345498834235:android:ca9bdccd6c1dadf7fe531e",
+        "android_client_info": {
+          "package_name": "com.victorbarrozo.whatsappfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7wa6A3d4OPioxaJs7tiIg-XEDBll17D8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
