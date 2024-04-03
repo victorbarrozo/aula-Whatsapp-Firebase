@@ -52,13 +52,15 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
-    //autenticacao
+    //Autenticacao
     implementation("com.google.firebase:firebase-auth-ktx")
-    //armazenamento
+    //Armazenamento
     implementation("com.google.firebase:firebase-storage-ktx")
-    //banco de dados
+    //Banco de dados
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+    //Picasso
+    implementation ("com.squareup.picasso:picasso:2.8")
 
 
 
@@ -71,3 +73,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
+
+ 
