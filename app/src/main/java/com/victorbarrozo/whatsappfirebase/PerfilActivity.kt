@@ -109,10 +109,12 @@ class PerfilActivity : AppCompatActivity() {
                     if ( dadosUsuarios != null) {
                         val nome = dadosUsuarios["nome"] as String
                         val foto = dadosUsuarios["foto"] as String
+
+                        solicitarpermissoes()
+
                         binding.editNomePerfil.setText(nome)
-                        if (foto.isNotEmpty()) {
-                            Picasso.get().load(foto).into(binding.imgPerfil)
-                        }
+                        Picasso.get().load(foto).into(binding.imgPerfil)
+
                     }
                 }
         }

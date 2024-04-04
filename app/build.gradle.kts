@@ -11,6 +11,7 @@ android {
     namespace = "com.victorbarrozo.whatsappfirebase"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.victorbarrozo.whatsappfirebase"
         minSdk = 24

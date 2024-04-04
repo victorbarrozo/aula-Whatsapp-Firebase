@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -40,8 +42,17 @@ class ContatosFragment : Fragment() {
         binding = FragmentContatosBinding.inflate(
             inflater, container, false
         )
+        contatosAdapter = ContatosAdapter()
+        binding.rvContatos.adapter = contatosAdapter
+        binding.rvContatos.layoutManager = LinearLayoutManager( context )
+        binding.rvContatos.addItemDecoration(
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+        )
+
         return binding.root
     }
+
+
 
     override fun onStart() {
         super.onStart()
@@ -54,9 +65,9 @@ class ContatosFragment : Fragment() {
        eventoSnapshot = firestore.collection( "usuarios" )
             .addSnapshotListener { querySnapshot, erro ->
                 val documentos = querySnapshot?.documents
+                val listaContatos = mutableListOf<Usuario>()
 
                 documentos?.forEach {documentSnapshot ->
-                    val listaContatos = mutableListOf<Usuario>()
 
                     val idUsuario = firebaseAuth.currentUser?.uid
                     val usuario = documentSnapshot.toObject( Usuario::class.java )
@@ -67,6 +78,7 @@ class ContatosFragment : Fragment() {
                         }
                     }
                 }
+                if (listaContatos.isNotEmpty()) contatosAdapter.adcionarLista( listaContatos )
             }
     }
 
