@@ -107,10 +107,12 @@ class PerfilActivity : AppCompatActivity() {
                 .addOnSuccessListener { documentSnapshot->
                     val dadosUsuarios = documentSnapshot.data
                     if ( dadosUsuarios != null) {
-                        val nome =  dadosUsuarios["nome"] as String
-                        val foto =  dadosUsuarios["foto"] as String
-                        binding.editNomePerfil.setText( nome )
-                        Picasso.get().load( foto ).into( binding.imgPerfil )
+                        val nome = dadosUsuarios["nome"] as String
+                        val foto = dadosUsuarios["foto"] as String
+                        binding.editNomePerfil.setText(nome)
+                        if (foto.isNotEmpty()) {
+                            Picasso.get().load(foto).into(binding.imgPerfil)
+                        }
                     }
                 }
         }
