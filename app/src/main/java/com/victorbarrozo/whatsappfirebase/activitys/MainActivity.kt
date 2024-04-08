@@ -1,20 +1,17 @@
-package com.victorbarrozo.whatsappfirebase
+package com.victorbarrozo.whatsappfirebase.activitys
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.victorbarrozo.whatsappfirebase.R
 import com.victorbarrozo.whatsappfirebase.adapters.ViewPagerAdapter
 import com.victorbarrozo.whatsappfirebase.databinding.ActivityMainBinding
 

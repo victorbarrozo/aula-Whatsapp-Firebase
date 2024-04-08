@@ -1,21 +1,16 @@
-package com.victorbarrozo.whatsappfirebase
+package com.victorbarrozo.whatsappfirebase.activitys
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import com.victorbarrozo.whatsappfirebase.databinding.ActivityMainBinding
 import com.victorbarrozo.whatsappfirebase.databinding.ActivityPerfilBinding
 import com.victorbarrozo.whatsappfirebase.utils.exibirMensage
 
@@ -83,7 +78,10 @@ class PerfilActivity : AppCompatActivity() {
             }
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        recuperarDadosIniciasUsuarios()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -92,34 +90,15 @@ class PerfilActivity : AppCompatActivity() {
         iniciarEventosClique()
     }
 
-    override fun onStart() {
-        super.onStart()
-        recuperarDadosIniciasUsuarios()
-    }
 
-    private fun recuperarDadosIniciasUsuarios() {
-        val idUsuario = firebaseAuth.currentUser?.uid
-        if ( idUsuario != null ) {
-            firestore
-                .collection("usuarios")
-                .document(idUsuario)
-                .get()
-                .addOnSuccessListener { documentSnapshot->
-                    val dadosUsuarios = documentSnapshot.data
-                    if ( dadosUsuarios != null) {
-                        val nome = dadosUsuarios["nome"] as String
-                        val foto = dadosUsuarios["foto"] as String
-
-                        solicitarpermissoes()
-
-                        binding.editNomePerfil.setText(nome)
-                        Picasso.get().load(foto).into(binding.imgPerfil)
-
-                    }
-                }
+    private fun inicializarToobar() {
+        val toobar = binding.includeToobarPerfil.tbPrincipal
+        setSupportActionBar(toobar)
+        supportActionBar?.apply {
+            title = "Editar perfil"
+            setDisplayHomeAsUpEnabled(true)
         }
     }
-
     private fun iniciarEventosClique() {
         binding.fabAdcionarFoto.setOnClickListener {
             if (temPermissaoGaleria) {
@@ -145,7 +124,6 @@ class PerfilActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun solicitarpermissoes() {
 
         //verificar se ja tem permissõo
@@ -180,13 +158,27 @@ class PerfilActivity : AppCompatActivity() {
 
         }
     }
+    private fun recuperarDadosIniciasUsuarios() {
+        val idUsuario = firebaseAuth.currentUser?.uid
+        if ( idUsuario != null ) {
+            firestore
+                .collection("usuarios")
+                .document( idUsuario )
+                .get()
+                .addOnSuccessListener { documentSnapshot->
+                    val dadosUsuarios = documentSnapshot.data
+                    if ( dadosUsuarios != null) {
+                        val nome = dadosUsuarios["nome"] as String
+                        val foto = dadosUsuarios["foto"] as String
 
-    private fun inicializarToobar() {
-        val toobar = binding.includeToobarPerfil.tbPrincipal
-        setSupportActionBar(toobar)
-        supportActionBar?.apply {
-            title = "Editar perfil"
-            setDisplayHomeAsUpEnabled(true)
+                       // solicitarpermissoes()
+
+                        binding.editNomePerfil.setText(nome)
+                        Picasso.get().load(foto).into(binding.imgPerfil)
+
+                    }
+                }
         }
     }
+
 }

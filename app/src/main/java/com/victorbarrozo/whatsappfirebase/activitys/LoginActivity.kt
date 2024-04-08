@@ -1,20 +1,13 @@
-package com.victorbarrozo.whatsappfirebase
+package com.victorbarrozo.whatsappfirebase.activitys
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
-import com.victorbarrozo.whatsappfirebase.databinding.ActivityCadastroBinding
 import com.victorbarrozo.whatsappfirebase.databinding.ActivityLoginBinding
-import com.victorbarrozo.whatsappfirebase.databinding.ActivityMainBinding
 import com.victorbarrozo.whatsappfirebase.utils.exibirMensage
 
 class LoginActivity : AppCompatActivity() {

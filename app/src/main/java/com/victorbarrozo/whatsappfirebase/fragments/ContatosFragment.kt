@@ -1,7 +1,7 @@
 package com.victorbarrozo.whatsappfirebase.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
-import com.victorbarrozo.whatsappfirebase.R
+import com.victorbarrozo.whatsappfirebase.activitys.MensagensActivity
 import com.victorbarrozo.whatsappfirebase.adapters.ContatosAdapter
-import com.victorbarrozo.whatsappfirebase.databinding.ActivityPerfilBinding
 import com.victorbarrozo.whatsappfirebase.databinding.FragmentContatosBinding
 import com.victorbarrozo.whatsappfirebase.model.Usuario
+import com.victorbarrozo.whatsappfirebase.utils.Constantes
 
 
 class ContatosFragment : Fragment() {
@@ -42,7 +41,12 @@ class ContatosFragment : Fragment() {
         binding = FragmentContatosBinding.inflate(
             inflater, container, false
         )
-        contatosAdapter = ContatosAdapter()
+        contatosAdapter = ContatosAdapter{usuario ->
+            val intent = Intent(context, MensagensActivity::class.java)
+            intent.putExtra(Constantes.DADOS_DESTINTARIO, usuario)
+            intent.putExtra(Constantes.ORIGEM, Constantes.ORIGEM_CONTATO)
+            startActivity( intent )
+        }
         binding.rvContatos.adapter = contatosAdapter
         binding.rvContatos.layoutManager = LinearLayoutManager( context )
         binding.rvContatos.addItemDecoration(

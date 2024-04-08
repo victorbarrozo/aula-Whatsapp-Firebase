@@ -12,7 +12,9 @@ import com.victorbarrozo.whatsappfirebase.model.Usuario
 import org.checkerframework.checker.units.qual.C
 
 
-class ContatosAdapter: Adapter<ContatosAdapter.ContatosViewHolder>() {
+class ContatosAdapter(
+    private val onClick: ( Usuario ) -> Unit
+): Adapter<ContatosAdapter.ContatosViewHolder>() {
     private var listaContatos = emptyList<Usuario>()
     fun adcionarLista(lista: List<Usuario>) {
         listaContatos = lista
@@ -27,6 +29,10 @@ class ContatosAdapter: Adapter<ContatosAdapter.ContatosViewHolder>() {
             binding.textPerfilContatos.text = usuario.nome
             Log.i("picasso", "${usuario.foto}")
             Picasso.get().load(usuario.foto).into(binding.imgPerfilContatos)
+
+            binding.clContato.setOnClickListener {
+                onClick( usuario )
+            }
         }
     }
 
